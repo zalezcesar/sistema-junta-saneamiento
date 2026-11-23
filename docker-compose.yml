@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: junta
+      POSTGRES_USER: junta
+      POSTGRES_PASSWORD: junta123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://junta:junta123@postgres:5432/junta
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+
+  # ============ SERVICIO DE BACKUP AUTOMÁTICO ============
+  backup:
+    image: postgres:16-alpine
+    container_name: junta_backup
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    volumes:
+      - ./backups:/backups
+    environment:
+      PGPASSWORD: junta123
+    entrypoint: >
+      sh -c '
+      echo "🛡️ Servicio de Backup iniciado...";
+      while true; do
+        FECHA=$$(date +"%Y-%m-%d_%H-%M-%S");
+        echo "🔄 Iniciando backup: $$FECHA";
+        pg_dump -h postgres -U junta -d junta | gzip > /backups/junta_$$FECHA.sql.gz;
+        echo "✅ Backup completado";
+        find /backups -name "junta_*.sql.gz" -mtime +30 -delete;
+        echo "💤 Esperando 24 horas para el próximo backup...";
+        sleep 86400;
+      done'
+
+# 👇 ESTO ES VITAL: Declarar el volumen al final del archivo
+volumes:
+  postgres_data:

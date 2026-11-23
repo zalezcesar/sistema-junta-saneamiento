@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.9",
+    "lucide-react": "^1.71.0",
+    "recharts": "^3.10.1"
+  }
+}

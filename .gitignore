@@ -1,0 +1,19 @@
+# Dependencias y entornos virtuales
+node_modules/
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Compilados y ejecutables generados
+frontend/dist/
+backend/dist/
+backend/build/
+backend/*.spec
+ENTREGABLE_CLIENTE/
+
+# Bases de datos locales y respaldos
+*.db
+*.sql
+*.sql.gz
+backups/
