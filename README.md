@@ -13,7 +13,6 @@ Plataforma web **Full Stack** diseñada para administrar de punta a punta las op
   * Cálculo escalonado de tarifa mínima (m³ base) + consumo excedente.
   * Cálculo automático de IVA (10%), Erssan (2%) y redondeo al múltiplo de ₲ 1.000.
   * Numeración correlativa con control de Timbrado DNIT, anulación controlada, refacturación e impresión individual o en lote.
-* **Calibrador Visual Drag & Drop (`150 mm × 210 mm`):** Herramienta interactiva para posicionar con el mouse cada dato variable sobre formularios preimpresos de imprenta.
 * **Cajero (POS) y Tesorería:** Cobro de una o múltiples facturas en orden cronológico, resumen diario de personas atendidas y monto recaudado en el turno, libro de caja (ingresos/egresos) y reporte imprimible de morosos.
 * **Dashboard Gerencial:** Indicadores en tiempo real de recaudación, deuda pendiente, consumo total en m³ del período y gráficos comparativos mensuales.
 * **Respaldos Automatizados:** Copias de seguridad diarias automáticas de la base de datos con retención de los últimos 30 respaldos.
